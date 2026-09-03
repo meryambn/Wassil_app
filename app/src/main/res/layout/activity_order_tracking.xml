@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarTracking"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:navigationIcon="?attr/homeAsUpIndicator">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suivi de livraison"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:id="@+id/scrollTracking"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Order ID -->
+            <TextView
+                android:id="@+id/tvTrackingOrderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WSL-2026-XXX"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"/>
+
+            <!-- Status -->
+            <TextView
+                android:id="@+id/tvTrackingStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="En route"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Completion prompt. Sits at the top of the screen rather than with the
+                 other buttons at the bottom: a delivered order is the one moment the
+                 sender is being asked for something, and a prompt below the map and
+                 the address list would be scrolled past. Visibility is decided by
+                 setupRatingButton() — never shown before the order reaches 'livre'. -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardRatingPrompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvRatingPromptTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="🎉 Livraison terminée !"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"/>
+
+                    <TextView
+                        android:id="@+id/tvRatingPromptSubtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Comment s'est passée votre livraison ?"
+                        android:textSize="13sp"
+                        android:textColor="@color/text_secondary"/>
+
+                    <Button
+                        android:id="@+id/btnRateCourier"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Évaluer le livreur"
+                        android:backgroundTint="@color/accent"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Progress Steps -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardStepPickup"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📦"
+                            android:textSize="24sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Prise en charge"
+                            android:textSize="12sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardStepEnRoute"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🚚"
+                            android:textSize="24sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="En route"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardStepDelivered"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✅"
+                            android:textSize="24sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Livré"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Detailed lifecycle (cahier des charges p.3). Vertical rather than
+                 horizontal: five steps side by side on a phone would be unreadable,
+                 and a vertical stepper also leaves room for the label text. The three
+                 cards above are kept as a coarse summary. -->
+            <LinearLayout
+                android:id="@+id/llLifecycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:padding="12dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:id="@+id/tvStep1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Livreur accepté"
+                    android:textSize="14sp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvStep2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="En route vers le point de départ"
+                    android:textSize="14sp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvStep3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Colis récupéré"
+                    android:textSize="14sp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvStep4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="En cours de livraison"
+                    android:textSize="14sp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvStep5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Livré"
+                    android:textSize="14sp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"/>
+            </LinearLayout>
+
+            <!-- Live courier position.
+                 Fixed height because this sits inside a ScrollView: a map with
+                 match_parent height would collapse, and one that consumed drag
+                 gestures would make the page impossible to scroll. -->
+            <TextView
+                android:id="@+id/tvMapLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🗺 Position du livreur"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tvLocationStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#757575"
+                android:paddingTop="4dp"
+                android:paddingBottom="8dp"
+                android:visibility="gone"/>
+
+            <!-- The pin is a fixed overlay at the centre and the camera follows the
+                 courier, so the pin always marks their position. Simpler and more
+                 robust from Java than Mapbox's annotation plugin, whose API is a set
+                 of Kotlin extension functions. We lose the ability to draw a second
+                 marker — which costs nothing today, because orders carry no
+                 destination coordinates yet (drop_lat/drop_lng are all NULL). -->
+            <FrameLayout
+                android:id="@+id/mapContainer"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:visibility="gone">
+
+                <com.mapbox.maps.MapView
+                    android:id="@+id/mapTracking"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <!-- Fixed centre marker, from when the map only ever followed the
+                     courier's live position. It is hidden as soon as the real route
+                     is drawn: pinned to the middle of the frame, it points at
+                     whatever happens to be centred rather than at anything real. -->
+                <TextView
+                    android:id="@+id/tvMapCentrePin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="📍"
+                    android:textSize="34sp"/>
+            </FrameLayout>
+
+            <!-- Addresses -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍 Adresses"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"/>
+
+            <TextView
+                android:id="@+id/tvTrackingPickup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pickup address"
+                android:layout_marginTop="8dp"
+                android:padding="12dp"
+                android:background="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/tvTrackingDrop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Drop address"
+                android:layout_marginTop="8dp"
+                android:padding="12dp"
+                android:background="@android:color/white"/>
+
+            <!-- Details -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📊 Détails"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Prix:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 DA"
+                    android:textStyle="bold"
+                    android:textColor="#fec87e"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Distance:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 km"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Temps estimé:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 min"/>
+            </LinearLayout>
+
+            <!-- Package Info (Colis) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📦 Informations Colis"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Type de colis:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingPackageType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Colis standard"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Poids:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0 kg"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTrackingInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instructions particulières:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingInstructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textStyle="italic"
+                    android:paddingTop="4dp"/>
+            </LinearLayout>
+
+            <!-- Payment Info (Paiement) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💳 Règlement / Paiement"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Mode de paiement:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingPaymentMethod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="À la livraison (Espèces)"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="État du paiement:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingPaymentStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="En attente de règlement"
+                    android:textStyle="bold"
+                    android:textColor="#F57C00"/>
+            </LinearLayout>
+
+            <!-- Timestamps (Horodatage) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🕒 Horodatage"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Créée le:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingCreatedAt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTrackingPickedUpAt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Colis récupéré le:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingPickedUpAt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTrackingDeliveredAt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Livré le:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTrackingDeliveredAt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"/>
+            </LinearLayout>
+
+            <!-- Participants -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👥 Participants"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Expéditeur:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvSenderName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llSenderPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tél. Expéditeur:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvSenderPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:textColor="#1565C0"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Livreur:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvDeliveryName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDeliveryPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tél. Livreur:"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvDeliveryPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:textColor="#1565C0"/>
+            </LinearLayout>
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp">
+
+                <Button
+                    android:id="@+id/btnUpdateStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Mettre à jour le statut"
+                    android:backgroundTint="@color/primary"
+                    android:visibility="gone"/>
+
+                <!-- The label here is a placeholder: setupContactButton() replaces it
+                     with the wording that matches the viewer's role (the sender is
+                     offered the livreur, the courier is offered the client). -->
+                <Button
+                    android:id="@+id/btnContactDelivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Ouvrir la discussion"
+                    android:backgroundTint="#fcfaf8"
+                    android:layout_marginTop="8dp"/>
+
+                <!-- Courier-only, and only on a delivered order that has not been
+                     paid. setupCashPaymentButton() decides; record_cash_payment
+                     re-checks both conditions on the server. -->
+                <Button
+                    android:id="@+id/btnConfirmCash"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Confirmer le paiement en espèces"
+                    android:backgroundTint="@color/accent"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"/>
+
+                <!-- The rating action lives in cardRatingPrompt near the top of this
+                     screen, not here. Keeping a second copy would mean two entry
+                     points into the same form. -->
+
+                <Button
+                    android:id="@+id/btnCancelOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Annuler la commande"
+                    android:backgroundTint="#F44336"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

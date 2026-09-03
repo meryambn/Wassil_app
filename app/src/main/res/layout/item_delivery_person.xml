@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <!-- Initial Circle -->
+    <LinearLayout
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/circle_initial_bg">
+
+        <TextView
+            android:id="@+id/tvInitial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Y"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Delivery Info -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp">
+
+        <TextView
+            android:id="@+id/tvDeliveryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Youcef Hamdi"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#212121"/>
+
+        <TextView
+            android:id="@+id/tvDeliveryInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moto"
+            android:textSize="13sp"
+            android:textColor="#757575"
+            android:layout_marginTop="2dp"/>
+    </LinearLayout>
+
+    <!-- Rating -->
+    <TextView
+        android:id="@+id/tvDeliveryRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⭐ 4.8"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#FFC107"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

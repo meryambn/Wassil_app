@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Android 14 (API 34) split FOREGROUND_SERVICE into per-type permissions.
+         A service declared with foregroundServiceType="location" additionally needs
+         this one, or startForegroundService throws SecurityException at runtime. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:name=".WassilApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <!-- Splash Activity - LAUNCHER -->
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Other Activities -->
+        <activity android:name=".activities.RoleChoiceActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.SenderHomeActivity" />
+        <activity android:name=".activities.DeliveryHomeActivity" />
+        <activity android:name=".activities.AdminHomeActivity" />
+        <activity android:name=".activities.NewDeliveryActivity" />
+        <activity android:name=".activities.OrderTrackingActivity" />
+        <activity android:name=".activities.HistoryActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.NegotiatePriceActivity" />
+        <activity android:name=".activities.PaymentActivity" />
+        <activity android:name=".activities.EarningsActivity" />
+        <activity android:name=".activities.OrderDetailsActivity" />
+        <activity android:name=".activities.MapboxActivity" />
+        <!-- Not exported: cannot be launched by other apps. Note this is only a
+             convenience — the real protection is is_admin() in the database. -->
+        <activity
+            android:name=".activities.AdminWithdrawalsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CourierWithdrawalsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.AddressPickerActivity"
+            android:exported="false" />
+
+        <!-- adjustResize so the on-screen keyboard pushes the composer up instead
+             of covering it, which is the whole screen on a chat view. -->
+        <activity
+            android:name=".activities.ChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".activities.AiAssistantActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".activities.KycActivity"
+            android:exported="false" />
+        <!-- Not exported. As with the withdrawal screens, that is convenience only:
+             the real protection is is_admin() inside review_kyc_document and the
+             kyc_select policy, both of which re-check on the server. -->
+        <activity
+            android:name=".activities.AdminKycActivity"
+            android:exported="false" />
+
+        <!-- Started by the system when a push arrives, including while no Activity
+             is running. exported="false" plus the FCM intent filter is the standard
+             declaration; the filter is what tells Play Services where to deliver. -->
+        <service
+            android:name=".notifications.WassilMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Services - Only declare once -->
+        <meta-data
+            android:name="com.mapbox.token"
+            android:value="@string/mapbox_access_token" />
+        <service
+            android:name=".services.RealTimeTrackingService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+    </application>
+
+</manifest>

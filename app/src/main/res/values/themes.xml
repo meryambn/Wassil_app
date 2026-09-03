@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Must descend from Theme.MaterialComponents: layouts use TextInputLayout,
+      MaterialCardView and Chip, which throw IllegalArgumentException at inflation
+      under a plain AppCompat theme (this crashed NewDeliveryActivity on open).
+      The .Bridge variant satisfies that requirement while keeping AppCompat widget
+      styling, so the existing screens keep their current appearance.
+    -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="colorPrimary">#FF5722</item>
+        <item name="colorPrimaryDark">#E64A19</item>
+        <item name="colorAccent">#4CAF50</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+    </style>
+
+    <!-- Remove or comment out SplashTheme if it exists -->
+    <!-- <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style> -->
+</resources>

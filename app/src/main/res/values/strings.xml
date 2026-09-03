@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wassil Delivery</string>
+    <string name="colis">Colis</string>
+    <string name="document">Document</string>
+    <string name="retour">← Retour</string>
+    <string name="nouvelle_livraison">Nouvelle livraison</string>
+    <string name="o_doit_on_r_cup_rer_et_livrer_votre_colis">Où doit-on récupérer et livrer votre colis ?</string>
+
+    <string-array name="vehicle_types">
+        <item>Moto</item>
+        <item>Voiture</item>
+        <item>Camion</item>
+    </string-array>
+
+    <string-array name="package_types">
+        <item>Electronique</item>
+        <item>Vêtements</item>
+        <item>Documents</item>
+        <item>Nourriture</item>
+        <item>Autre</item>
+    </string-array>
+</resources>

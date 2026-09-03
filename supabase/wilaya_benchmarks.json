@@ -1,0 +1,93 @@
+{
+  "zones": {
+    "south": {
+      "home_avg": 1371,
+      "stopdesk_avg": 894
+    },
+    "north": {
+      "home_avg": 727,
+      "stopdesk_avg": 509
+    },
+    "highlands": {
+      "home_avg": 820,
+      "stopdesk_avg": 564
+    }
+  },
+  "wilayas": {
+    "adrar": {
+      "zone": "south",
+      "home_avg": 1310,
+      "stopdesk_avg": 924
+    },
+    "ain defla": {
+      "zone": "north",
+      "home_avg": 830,
+      "stopdesk_avg": 564
+    },
+    "ain temouchent": {
+      "zone": "north",
+      "home_avg": 783,
+      "stopdesk_avg": 567
+    },
+    "alger": {
+      "zone": "north",
+      "home_avg": 560,
+      "stopdesk_avg": 384
+    },
+    "annaba": {
+      "zone": "north",
+      "home_avg": 780,
+      "stopdesk_avg": 544
+    },
+    "batna": {
+      "zone": "highlands",
+      "home_avg": 820,
+      "stopdesk_avg": 564
+    },
+    "bechar": {
+      "zone": "south",
+      "home_avg": 1240,
+      "stopdesk_avg": 864
+    },
+    "bejaia": {
+      "zone": "north",
+      "home_avg": 740,
+      "stopdesk_avg": 0
+    },
+    "blida": {
+      "zone": "north",
+      "home_avg": 630,
+      "stopdesk_avg": 0
+    },
+    "ghardaia": {
+      "zone": "south",
+      "home_avg": 950,
+      "stopdesk_avg": 0
+    },
+    "oran": {
+      "zone": "north",
+      "home_avg": 750,
+      "stopdesk_avg": 0
+    },
+    "setif": {
+      "zone": "north",
+      "home_avg": 760,
+      "stopdesk_avg": 0
+    },
+    "tamanrasset": {
+      "zone": "south",
+      "home_avg": 1660,
+      "stopdesk_avg": 0
+    },
+    "tindouf": {
+      "zone": "south",
+      "home_avg": 1633,
+      "stopdesk_avg": 0
+    },
+    "tizi ouzou": {
+      "zone": "north",
+      "home_avg": 730,
+      "stopdesk_avg": 0
+    }
+  }
+}

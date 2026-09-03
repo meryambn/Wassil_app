@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Body of the "noter le livreur" dialog. The confirm/cancel buttons come from the
+     AlertDialog itself, matching dialog_negotiate and dialog_withdraw. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvRateTarget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Comment s'est passée cette livraison ?"
+        android:textSize="13sp"
+        android:textColor="@color/text_secondary"
+        android:gravity="center" />
+
+    <!-- stepSize=1 so only whole stars are possible: the database stores an integer
+         and checks stars between 1 and 5, so half-stars could never be saved. -->
+    <RatingBar
+        android:id="@+id/ratingBarCourier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:rating="5" />
+
+    <TextView
+        android:id="@+id/tvRateStarsLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:textColor="@color/primary" />
+
+    <EditText
+        android:id="@+id/etRateComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext_border"
+        android:hint="Commentaire (facultatif)"
+        android:textColorHint="@color/text_hint"
+        android:textColor="@color/text_primary"
+        android:textSize="14sp"
+        android:padding="12dp"
+        android:minLines="2"
+        android:maxLines="4"
+        android:gravity="top|start"
+        android:inputType="textCapSentences|textMultiLine"
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Votre note est définitive et ne pourra pas être modifiée."
+        android:textSize="11sp"
+        android:textColor="@color/text_secondary"
+        android:gravity="center" />
+
+</LinearLayout>

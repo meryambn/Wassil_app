@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/btnBackRetraits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="←"
+            android:textSize="24sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="#213451"
+            android:paddingEnd="16dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mes retraits"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#212121"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvRetraitsSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#757575"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone"/>
+
+    <!-- Loading -->
+    <ProgressBar
+        android:id="@+id/progressRetraits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:visibility="gone"/>
+
+    <!-- Empty history -->
+    <TextView
+        android:id="@+id/tvRetraitsEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aucun retrait pour le moment.\nVos demandes de retrait apparaîtront ici."
+        android:gravity="center"
+        android:padding="32dp"
+        android:textSize="14sp"
+        android:textColor="#9E9E9E"
+        android:visibility="gone"/>
+
+    <!-- Network / API failure, with a way to try again -->
+    <LinearLayout
+        android:id="@+id/llRetraitsError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvRetraitsError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#C62828"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnRetraitsRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Réessayer"
+            android:backgroundTint="#f57c0d"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerRetraits"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"/>
+
+</LinearLayout>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/card_background"
+    android:padding="22dp">
+
+    <!-- Title & Icon -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💼"
+            android:textSize="26sp"
+            android:layout_marginEnd="10dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gestion des Commissions"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#212121" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Taux de prélèvement plateforme WASSIL"
+                android:textSize="12sp"
+                android:textColor="#757575" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifiez le pourcentage de commission appliqué automatiquement sur chaque commande livrée. Le reste est crédité directement au livreur."
+        android:textSize="13sp"
+        android:textColor="#424242"
+        android:lineSpacingExtra="2dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Current Rate Display Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#F3E5F5"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Taux de commission actuel :"
+            android:textSize="13sp"
+            android:textColor="#4A148C"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDialogCurrentRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15 %"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#6A1B9A" />
+    </LinearLayout>
+
+    <!-- Percentage Input -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nouveau pourcentage de commission (%) :"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:textColor="#212121"
+        android:layout_marginBottom="6dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <EditText
+            android:id="@+id/etCommissionRate"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:hint="Ex: 15"
+            android:textSize="16sp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:background="@drawable/edittext_border"
+            android:textColor="#212121" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#424242"
+            android:paddingStart="10dp"
+            android:paddingEnd="6dp" />
+    </LinearLayout>
+
+    <!-- Quick Presets -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sélection rapide :"
+        android:textSize="12sp"
+        android:textColor="#757575"
+        android:layout_marginBottom="6dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnPreset5"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:text="5%"
+            android:textSize="12sp"
+            android:backgroundTint="#EDE7F6"
+            android:textColor="#5E35B1"
+            android:padding="0dp"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/btnPreset10"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:text="10%"
+            android:textSize="12sp"
+            android:backgroundTint="#EDE7F6"
+            android:textColor="#5E35B1"
+            android:padding="0dp"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/btnPreset15"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:text="15%"
+            android:textSize="12sp"
+            android:backgroundTint="#EDE7F6"
+            android:textColor="#5E35B1"
+            android:padding="0dp"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/btnPreset20"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:text="20%"
+            android:textSize="12sp"
+            android:backgroundTint="#EDE7F6"
+            android:textColor="#5E35B1"
+            android:padding="0dp"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/btnPreset25"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:text="25%"
+            android:textSize="12sp"
+            android:backgroundTint="#EDE7F6"
+            android:textColor="#5E35B1"
+            android:padding="0dp" />
+    </LinearLayout>
+
+    <!-- Simulation Preview Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#F5F5F5"
+        android:padding="12dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💡 Simulation pour une course de 1 000 DA :"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#424242"
+            android:layout_marginBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvSimPlatform"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Plateforme : 150 DA"
+                android:textSize="12sp"
+                android:textColor="#6A1B9A" />
+
+            <TextView
+                android:id="@+id/tvSimCourier"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Livreur : 850 DA"
+                android:textSize="12sp"
+                android:textColor="#2E7D32"
+                android:gravity="end" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancelCommission"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Annuler"
+            android:textColor="#757575"
+            android:backgroundTint="#EEEEEE"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnSaveCommission"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Enregistrer"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#5E35B1" />
+    </LinearLayout>
+
+</LinearLayout>

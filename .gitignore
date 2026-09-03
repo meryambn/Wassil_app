@@ -1,0 +1,55 @@
+# Built application files
+*.apk
+*.aar
+*.aab
+*.dex
+*.class
+
+# Output and build directories
+/build/
+**/build/
+captures/
+.externalNativeBuild
+.cxx/
+
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# Local configuration and machine-specific secrets
+local.properties
+*.local
+.env
+.env.*
+
+# Local databases and dumps
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+ui_dump.xml
+*.dump
+*.xml.dump
+*.log
+
+# Android Studio / IntelliJ IDEA
+*.iml
+.idea/
+.idea
+*.ipr
+*.iws
+
+# Visual Studio Code
+.vscode/
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

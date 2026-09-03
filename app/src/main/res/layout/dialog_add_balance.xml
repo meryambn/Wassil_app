@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sélectionnez un pack de recharge ou entrez un montant personnalisé (min. 500 DA, max. 50 000 DA)."
+        android:textSize="13sp"
+        android:textColor="#757575"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Quick recharge chips / presets -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnPack1000"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="+1 000"
+            android:textSize="12sp"
+            android:textColor="#f57c0d"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btnPack2000"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="+2 000"
+            android:textSize="12sp"
+            android:textColor="#f57c0d"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"/>
+
+        <Button
+            android:id="@+id/btnPack5000"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="+5 000"
+            android:textSize="12sp"
+            android:textColor="#f57c0d"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Montant personnalisé (DA)"
+        android:textSize="12sp"
+        android:textColor="#757575"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/etTopUpAmount"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Ex: 1500"
+        android:inputType="number"
+        android:padding="16dp"
+        android:background="@drawable/edittext_border"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvTopUpError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Montant invalide"
+        android:textSize="12sp"
+        android:textColor="#F44336"
+        android:visibility="gone"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modes de paiement supportés: CIB, Edahabia, BaridiMob"
+        android:textSize="11sp"
+        android:textColor="#9E9E9E"/>
+
+</LinearLayout>

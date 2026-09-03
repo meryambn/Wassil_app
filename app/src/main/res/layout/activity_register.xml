@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Retour"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:textColor="#213451"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inscription"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"/>
+
+        <EditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Nom complet"
+            android:padding="16dp"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Numéro de téléphone"
+            android:inputType="phone"
+            android:padding="16dp"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Mot de passe (min. 6 caractères)"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/actvWilaya"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Wilaya (sélectionner ou taper)"
+            android:padding="16dp"
+            android:background="@drawable/edittext_border"
+            android:completionThreshold="1"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etCommune"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Commune"
+            android:padding="16dp"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:id="@+id/llVehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type de véhicule"
+                android:textSize="12sp"
+                android:textColor="#757575"
+                android:layout_marginBottom="4dp"/>
+
+            <Spinner
+                android:id="@+id/spVehicle"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/edittext_border"
+                android:layout_marginBottom="12dp"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pbRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateTint="#f57c0d"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="S'inscrire"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#f57c0d"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
+</ScrollView>

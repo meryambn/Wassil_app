@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="primary">#f57c0d</color>
+    <color name="primary_dark">#e06a00</color>
+    <color name="primary_light">#ff8c2e</color>
+    <color name="accent">#4CAF50</color>
+    <color name="accent_blue">#2196F3</color>
+    <color name="gray_300">#E0E0E0</color>
+    <color name="text_secondary">#757575</color>
+
+
+    <!-- Status Colors -->
+    <color name="status_en_route">#FF9800</color>
+    <color name="status_livre">#4CAF50</color>
+    <color name="status_prise_en_charge">#2196F3</color>
+    <color name="status_pending">#9E9E9E</color>
+    <color name="gray">#F5F5F5</color>
+
+    <!-- Neutral Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_light">#f5f5f5</color>
+    <color name="gray_medium">#E0E0E0</color>
+    <color name="gray_dark">#757575</color>
+
+    <color name="estimate_background">#F5F5F5</color>
+
+    <!-- Card and Background Colors -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="background">#fcfaf8</color>
+    <color name="chip_background">#F5F5F5</color>
+    <color name="chip_stroke">#E0E0E0</color>
+    <color name="chip_selected_background">#f57c0d</color>
+    <color name="chip_selected_text">#FFFFFF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+
+    <color name="text_hint">#BDBDBD</color>
+</resources>

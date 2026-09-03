@@ -1,0 +1,12 @@
+## Example local.properties for Wassilapp
+## Copy this file to local.properties and configure your specific local environment:
+
+# Path to the Android SDK
+sdk.dir=C\:/Users/YOUR_USERNAME/AppData/Local/Android/Sdk
+
+# Mapbox Secret Download Token (for Maven dependency resolution)
+MAPBOX_DOWNLOADS_TOKEN=your_mapbox_secret_download_token
+
+# Supabase Backend Configuration
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your_supabase_anon_key
