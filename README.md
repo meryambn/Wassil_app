@@ -1,122 +1,181 @@
 # Wassil (وصيل) 📦🛵
 
-> **Application Collaborative de Livraison Urbaine et Inter-Wilayas en Algérie**
+> **Collaborative Urban & Inter-Wilaya Delivery Platform with Edge AI, Computer Vision, and Real-Time Geospatial Intelligence**
 
-Wassil est une plateforme collaborative de livraison connectant les expéditeurs, les livreurs indépendants et les administrateurs avec calcul d'itinéraire en direct, vérification d'identité par OCR, suivi cartographique en temps réel et gestion financière automatisée.
-
----
-
-## 🌟 Fonctionnalités Principales
-
-### 📦 Expéditeur (Sender)
-- **Ajout de colis intuitif :** Choix d'adresses via carte Mapbox interactive, géolocalisation GPS en direct ou recherche textuelle avec autocomplétion des wilayas et communes algériennes.
-- **Estimation intelligente :** Calcul dynamique de la distance routière (`km`), de la durée estimée (`min`), du tarif recommandé (`DA`) et recommandation automatique du véhicule optimal (Moto, Voiture, Fourgon, Camion) en fonction du poids et volume.
-- **Photo de colis optionnelle :** Prise de photo ou sélection depuis la galerie avec compression automatique et stockage sécurisé sur Supabase Storage.
-- **Portefeuille intégré :** Gestion du solde et rechargement de crédit avec montants prédéfinis (1 000 DA, 2 000 DA, 5 000 DA, etc.) et validation sécurisée.
-- **Assistant Virtuel IA :** Assistant conversationnel pour estimer les tarifs, suivre les livraisons et répondre aux questions fréquentes.
-
-### 🛵 Livreur (Courier)
-- **Vérification d'identité KYC complète :** Téléversement et analyse OCR automatique (Google ML Kit) de :
-  1. Carte Nationale d'Identité (**CIN**)
-  2. Permis de conduire (**Permis**)
-  3. Carte grise du véhicule (**Carte grise**)
-- **Gestion des courses :** Consultation des demandes disponibles à proximité, acceptation et mise à jour des statuts en direct (*vers départ*, *colis récupéré*, *en route*, *livré*).
-- **Gains & Retraits :** Crédit automatique des gains nets après déduction de la commission plateforme lors de la livraison, historique des transactions et formulaires de demande de retrait (virement CCP / BaridiMob / Espèces).
-
-### 🛡️ Administrateur (Admin)
-- **Tableau de bord temps réel :** Vue d'ensemble des KPI clés (commandes totales, chiffre d'affaires brut GMV, livreurs actifs, courses en cours).
-- **Carte en direct Mapbox :** Visualisation cartographique en temps réel de tous les livreurs actifs et points de collecte/livraison.
-- **Gestion des commissions plateforme :**
-  - Affichage instantané du taux de prélèvement, des commissions perçues par la plateforme et des revenus nets distribués aux livreurs.
-  - Modification interactive du taux de commission (presets 5%, 10%, 15%, 20%, 25% ou valeur personnalisée) avec simulation d'impact en temps réel et synchronisation immédiate sur la base de données Supabase.
-- **Vérification KYC & Retraits :** File d'attente avec aperçu des documents téléversés, texte extrait par OCR, validation ou refus avec motifs.
+Wassil is an end-to-end collaborative logistics and delivery mobile application engineered for the Algerian market. It seamlessly connects senders, couriers, and platform administrators through real-time Mapbox route optimization, on-device OCR identity verification, automated financial triggers, and a hybrid conversational AI engine with dialectal NLP support.
 
 ---
 
-## 🛠️ Stack Technique
+## 🧠 Artificial Intelligence & Machine Learning Architecture
 
-- **Plateforme :** Android Native (Java 17, Android SDK 34/35)
-- **Système de Build :** Gradle (Kotlin DSL `build.gradle.kts`)
-- **Cartographie & Géocodage :** Mapbox Maps SDK v11, Mapbox Directions API, Mapbox Search SDK
-- **Backend & Cloud :** [Supabase](https://supabase.com)
-  - PostgreSQL 15+ avec Row Level Security (RLS)
-  - Fonctions stockées PL/pgSQL (RPC)
-  - Triggers automatisés pour le calcul des commissions et la distribution des soldes
-  - Supabase Storage (buckets `kyc`, `parcels`)
-- **Computer Vision & IA :** Google ML Kit Text Recognition (OCR sur l'appareil)
-- **Réseau :** Retrofit 2, OkHttp 4, Gson
+As an AI-driven platform, Wassil incorporates edge computer vision, dialectal natural language understanding (NLU), dialogue state tracking, and empirical data-driven pricing models.
 
----
-
-## 🚀 Installation & Configuration
-
-### Prérequis
-- Android Studio Ladybug (ou version plus récente)
-- JDK 17+
-- Compte Mapbox (avec un token de téléchargement secret pour les dépendances SDK v11)
-- Instance Supabase configurée
-
-### 1. Configuration des clés locales
-Créez un fichier `local.properties` à la racine du projet (dans le dossier `Wassilapp/`) en vous basant sur `local.properties.example` :
-
-```properties
-sdk.dir=C\:/Users/VOTRE_NOM/AppData/Local/Android/Sdk
-
-# Token Mapbox Secret (avec permissions Downloads:Read)
-MAPBOX_DOWNLOADS_TOKEN=votre_token_secret_mapbox
-
-# Identifiants Supabase
-SUPABASE_URL=https://votre-projet.supabase.co
-SUPABASE_ANON_KEY=votre_cle_anon_supabase
+```
+                      ┌──────────────────────────────────────────────┐
+                      │             User Interaction / Chat          │
+                      │  (French, English, Algerian Darija / Arabizi) │
+                      └──────────────────────┬───────────────────────┘
+                                             │
+                                             ▼
+                      ┌──────────────────────────────────────────────┐
+                      │       Rule-Based / Deterministic NLU         │
+                      │     IntentDetector & EntityExtractor         │
+                      └──────┬────────────────────────────────┬──────┘
+                             │ (Slots filled / High confidence)│ (Complex / Open query)
+                             ▼                                ▼
+              ┌─────────────────────────────┐  ┌─────────────────────────────┐
+              │  Dialogue State Tracker     │  │ Cloud LLM Edge Microservice │
+              │     (ConversationState)     │  │   (Supabase Edge Functions) │
+              └──────────────┬──────────────┘  └──────────────┬──────────────┘
+                             │                                │
+                             ▼                                ▼
+              ┌──────────────────────────────────────────────────────────────┐
+              │        Response Synthesizer & Operational Actions            │
+              │  (Price Estimation, Order Tracking, Status Updates, FAQs)    │
+              └──────────────────────────────────────────────────────────────┘
 ```
 
-### 2. Déploiement de la base de données
-Exécutez le script SQL complet disponible dans `supabase/schema.sql` sur l'éditeur SQL de votre projet Supabase. Ce script initialise :
-- Les tables (`profiles`, `orders`, `offers`, `kyc_documents`, `withdrawals`, `platform_settings`)
-- Les politiques de sécurité Row-Level Security (RLS)
-- Les triggers de calcul de commissions et de crédit de solde
-- Les fonctions RPC administratives sécurisées (`review_kyc_document`, `set_platform_commission`, etc.)
+### 1. Dialectal NLU & Multilingual Intent Classification
+The core conversational engine (`com.example.wassilapp.ai`) addresses the linguistic diversity of Algeria:
+- **Multilingual Natural Language Processing:** Simultaneously parses Modern Standard Arabic, French, English, and Algerian Darija in both Arabic script (e.g., `وين راه`, `شحال`) and Arabizi/Latin script (e.g., `win rah`, `chhal`, `kifah nlivri`).
+- **Intent Recognition (`IntentDetector.java`):** Classifies user inputs into structured system intents (`PRICE_ESTIMATE`, `TRACK_ORDER`, `LIST_ORDERS`, `CREATE_DELIVERY`, `COURIER_SIGNUP`, `GENERAL_FAQ`).
+- **Slot Filling & Entity Extraction (`EntityExtractor.java`):** Employs regex-based token extractors and normalized gazetteers to identify:
+  - Algerian Wilayas (58 wilayas and major communes)
+  - Tracking numbers (`WSL-2026-XXXXX`)
+  - Numeric payload weights (`kg`, `g`) and parcel dimensions
+  - Delivery modes (Home delivery vs. Stopdesk pickup)
 
-### 3. Compilation et Lancement
-Depuis Android Studio ou en ligne de commande :
+### 2. Dialogue State Tracking (DST) & Context Management
+- **State Persistence (`ConversationState.java`):** Tracks conversational context across multi-turn interactions.
+- **Dynamic Slot Filling:** If a user expresses an intent with missing parameters (e.g., *"How much to send a package?"*), the system retains state and generates targeted prompts asking for missing entities (*origin*, *destination*, *weight*).
+- **Hybrid Edge/Cloud Orchestration (`OnlineLLMService.java`):**
+  - **Edge-First Determinism:** Fast, offline-resilient matching handles mission-critical operational flows with zero network latency.
+  - **Cloud LLM Fallback:** Complex queries are routed to an LLM microservice deployed on Supabase Edge Functions.
+
+### 3. On-Device Computer Vision & Document OCR
+- **Google ML Kit Text Recognition:** Integrated into the Courier KYC pipeline (`KycActivity.java`, `OcrHelper.java`).
+- **Edge Inference:** Directly extracts biometric identifiers, full names, dates of birth, and document numbers from identity cards (**CIN**), driver's licenses (**Permis**), and vehicle registration documents (**Carte grise**).
+- **Privacy by Design:** Text extraction executes locally on the mobile GPU/NPU before uploading compressed assets to encrypted Supabase buckets, minimizing sensitive visual data exposure.
+
+### 4. Smart Vehicle Recommendation & Dynamic Pricing Model
+- **Constraint-Based Vehicle Classifier:** Evaluates dimensional and mass bounds ($w \le 15\,\text{kg} \to \text{Moto}$, $15 < w \le 100\,\text{kg} \to \text{Car}$, $100 < w \le 800\,\text{kg} \to \text{Van}$, $w > 800\,\text{kg} \to \text{Truck}$) while factoring in urban traffic accessibility.
+- **Empirical Market Calibration:** Pricing algorithms cross-reference empirical benchmarks (`wilaya_benchmarks.json`, `algerian_delivery_market_dataset.csv`) across northern, highland, and southern zones to generate competitive, realistic delivery quotes in Algerian Dinars (DZD).
+
+---
+
+## 🌟 Core Application Features
+
+### 📦 Senders (Expéditeurs)
+- **Interactive Parcel Creation:** Geocoded address selection via interactive Mapbox map, live GPS location, or autocompleted wilaya/commune search.
+- **Instant Pre-Trip Estimation:** Persistent UI card displaying precise route distance (`km`), estimated transit time (`min`), cost estimate (`DA`), and recommended vehicle.
+- **Optional Parcel Photography:** Capture or pick package photos with automatic on-device compression and cloud upload.
+- **In-App Wallet:** Secure balance management with pre-configured top-up denominations (1 000 DA, 2 000 DA, 5 000 DA).
+
+### 🛵 Couriers (Livreurs)
+- **3-Tier KYC Identity Verification:** Automated OCR submission for CIN, Driver's License, and Vehicle Carte Grise.
+- **Order Dispatch & Status Lifecycle:** Real-time visibility into nearby delivery requests with stage transitions (*en route to pickup*, *parcel collected*, *out for delivery*, *delivered*).
+- **Automated Net Earnings:** Platform commission is automatically deducted upon delivery completion via database triggers, crediting courier net payouts immediately.
+
+### 🛡️ Administrators
+- **Real-Time Fleet Telemetry:** Interactive Mapbox dashboard plotting active couriers and order origins/destinations.
+- **Dynamic Platform Commission Control:**
+  - Real-time dashboard KPI breakdown (Total GMV, Platform Revenue Share, Net Courier Payouts).
+  - Commission rate adjustment modal with quick presets (5%, 10%, 15%, 20%, 25%), custom percentage input, and live financial simulation.
+- **KYC & Withdrawal Approval Queue:** Audit queue displaying extracted OCR text and document previews for instant verification.
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technology |
+|---|---|
+| **Mobile Client** | Android Native (Java 17, SDK 34/35, Kotlin DSL Gradle) |
+| **Geospatial & Mapping** | Mapbox Maps SDK v11, Mapbox Directions API, Mapbox Search SDK |
+| **Backend & Cloud DB** | Supabase (PostgreSQL 15+, Row-Level Security, RPC Functions, Realtime) |
+| **Machine Learning & Vision** | Google ML Kit (Text Recognition OCR v2) |
+| **AI Dialogue Engine** | Hybrid NLU Pipeline (Rule-based Slot Filler + Supabase Edge LLM) |
+| **Networking & HTTP** | Retrofit 2, OkHttp 4, Gson |
+
+---
+
+## 🚀 Setup & Installation
+
+### Prerequisites
+- Android Studio Ladybug (or newer)
+- JDK 17+
+- Mapbox Account (Secret download token with `Downloads:Read` scope)
+- Supabase Project
+
+### 1. Local Environment Configuration
+Create a `local.properties` file in the `Wassilapp/` directory by copying `local.properties.example`:
+
+```properties
+sdk.dir=C\:/Users/YOUR_USERNAME/AppData/Local/Android/Sdk
+
+# Mapbox Secret Download Token (for Maven dependency resolution)
+MAPBOX_DOWNLOADS_TOKEN=your_mapbox_secret_download_token
+
+# Supabase API Credentials
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+> ⚠️ **Security Notice:** Never commit `local.properties` to version control. It is protected by `.gitignore`.
+
+### 2. Database Provisioning
+Run the SQL schema located at `supabase/schema.sql` inside your Supabase SQL Editor. This provisions:
+- Relational schema (`profiles`, `orders`, `offers`, `kyc_documents`, `withdrawals`, `platform_settings`)
+- Row-Level Security (RLS) policies
+- Automated delivery payout triggers (`credit_courier_on_delivery`)
+- Administrative stored procedures (`set_platform_commission`, `review_kyc_document`)
+
+### 3. Build & Run
+From the `Wassilapp/` directory:
 
 ```bash
-# Nettoyage
+# Clean previous build artifacts
 ./gradlew clean
 
-# Compilation APK Debug
+# Build debug APK
 ./gradlew assembleDebug
 
-# Installation sur appareil ou émulateur connecté
+# Install on connected emulator or device
 ./gradlew installDebug
 ```
 
 ---
 
-## 📁 Structure du Projet
+## 📁 Repository Structure
 
 ```
 Wassilapp/
 ├── app/
 │   ├── src/main/java/com/example/wassilapp/
-│   │   ├── activities/       # Écrans principaux (Auth, Home, Delivery, KYC, Admin...)
-│   │   ├── adapters/         # Adaptateurs RecyclerView (Orders, KYC Review, Retraits...)
-│   │   ├── ai/               # Moteur de recommandation de véhicule et assistant virtuel
-│   │   ├── database/         # Cache SQLite local (DatabaseHelper)
-│   │   ├── models/           # Modèles de données métier (User, Order, Profile...)
-│   │   ├── remote/           # Clients API Retrofit, DTOs et Repositories Supabase
-│   │   └── utils/            # Utilitaires (Estimateur de prix, SessionManager, OcrHelper...)
-│   └── src/main/res/         # Layouts XML, Drawables, Menus, Thèmes et Valeurs
-├── gradle/                   # Gradle Wrapper
+│   │   ├── activities/          # UI Controllers (Auth, Map, NewDelivery, KYC, Admin...)
+│   │   ├── adapters/            # RecyclerView Adapters (Orders, KYC Review, Withdrawals...)
+│   │   ├── ai/                  # AI Conversational Engine, NLU, and Dialogue State Tracker
+│   │   │   ├── AiAssistantEngine.java
+│   │   │   ├── AiIntent.java
+│   │   │   ├── ConversationState.java
+│   │   │   ├── EntityExtractor.java
+│   │   │   ├── IntentDetector.java
+│   │   │   ├── OnlineLLMService.java
+│   │   │   └── PriceEstimateHandler.java
+│   │   ├── database/            # Local SQLite database helpers & caching
+│   │   ├── models/              # Domain entities (User, Order, Profile, AiMessage...)
+│   │   ├── remote/              # Retrofit interfaces, Supabase DTOs, and repositories
+│   │   └── utils/               # PriceEstimator, ML Kit OcrHelper, SessionManager
+│   └── src/main/res/            # Layouts, vector drawables, themes, and animations
 ├── supabase/
-│   ├── schema.sql            # Schéma PostgreSQL complet et fonctions RPC
-│   ├── wilaya_benchmarks.json # Benchmarks de distance et tarifs par wilaya
+│   ├── schema.sql               # Production PostgreSQL DDL, triggers, and RPCs
+│   ├── wilaya_benchmarks.json   # Wilaya pricing and distance benchmarks
 │   └── algerian_delivery_market_dataset.csv
-├── local.properties.example  # Modèle de configuration locale
-└── build.gradle.kts          # Configuration de build du projet
+├── local.properties.example     # Configuration template for developers
+└── build.gradle.kts             # Project build configuration
 ```
 
 ---
 
-## 📄 Licence
-Tous droits réservés © 2026 - Projet WASSIL Algérie.
+## 📄 License & Attribution
+Developed with ❤️ for Algerian collaborative logistics.  
+All Rights Reserved © 2026 - Wassil Project.
